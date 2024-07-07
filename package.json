@@ -1,0 +1,15 @@
+{
+  "name": "shop-with-express-api",
+  "version": "1.0.0",
+  "description": "API for shop-with-vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env --watch index.js"
+  },
+  "author": "fajrin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

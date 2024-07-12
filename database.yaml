@@ -1,0 +1,33 @@
+version: 'latest'
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/u_root
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/p_root
+    secrets:
+      - u_root
+      - p_root
+    volumes:
+      - db_volume:/data/db
+
+  # mongoexpress:
+  #   image: mongo-express
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+    #   ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@db:27017/
+    # env_file: ".env"
+    # depends_on:
+    #   - "db"
+
+secrets:
+  u_root:
+    file: docker/u_root.txt
+  p_root:
+    file: docker/p_root.txt
+
+volumes:
+  db_volume:

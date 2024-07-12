@@ -1,15 +1,21 @@
 import "dotenv/config";
 import express from "express";
-import privateRoute from "@/app/router/privateRoute";
-import publicRoute from "@/app/router/publicRouter";
+import privateRoute from "@/app/router/private_route";
+import publicRoute from "@/app/router/public_route";
+import errorHandling from "@/app/middlewares/error_handling";
+import defaultErrorHandling from "@/app/middlewares/default_error_handling";
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.NODE_BE_PORT;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(publicRoute);
-app.use(privateRoute);
+app.use("/v1", publicRoute);
+// app.use(privateRoute);
+
+app.use(errorHandling);
+app.use(defaultErrorHandling);
 
 app.listen(port, () => {
   console.log(`server running on ${port}`);

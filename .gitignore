@@ -1,3 +1,9 @@
 node_modules
 dist
+logs/*
+docker/*_root.txt
+
 .env
+.env.production
+.env.local
+.env.development
